@@ -50,6 +50,10 @@ Constraints in use:
   - `density_vs_tm_Tm2300C.png`
 - Density vs Tm with proximity highlighting:
   - `density_vs_tm_Tm2300C_highlighted_0p20.png`
+- TC solidus vs density plot:
+  - `tc_solidus_vs_density_ysgt400.png`
+- ROM Tm vs TC solidus plot:
+  - `rom_tm_vs_tc_solidus_ysgt400.png`
 
 ## Target composition proximity
 
@@ -67,10 +71,26 @@ Nearby points:
 
 Average YS for 612 nearby alloys: **379.68 MPa**
 
+## TC solidus/liquidus (YS>400 subset)
+
+Run command:
+
+```bash
+python /home/vela/projects/ult/redesign_2_5_2026/TC_Property_Module.py \
+  --input /home/vela/projects/ult/redesign_2_5_2026/near_target_within_0p20_YSgt400.csv \
+  --out-dir /home/vela/projects/ult/redesign_2_5_2026/tc_solidus_liquidus_ysgt400 \
+  --family-chunk-size 10 \
+  --max-workers 20
+```
+
+Output directory:
+- `tc_solidus_liquidus_ysgt400/`
+
+Note: TC output currently has **266 rows** (duplicate/extra row likely). Dedup by composition if needed.
+
 ## Notes
 
 - Do not edit `1_find_stoich_props_parallel_for_Class.py` for constraints; use new scripts.
 - Pugh constraint derivation:
   - `Pugh_Ratio_PRIOR = (2/3) * (1 + V_avgr) / (1 - 2*V_avgr)`
   - `Pugh > 2.5` ⇒ `V_avgr > 0.323529`
-
